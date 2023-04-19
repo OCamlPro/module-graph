@@ -59,6 +59,7 @@ let main () =
   let format = ref "pdf" in
   let use_cmis = ref false in
   let all_links = ref false in
+  let dirs = ref [] in
   Arg.parse
     [
       "--filenames", Arg.Set use_filenames,
@@ -71,9 +72,8 @@ let main () =
       "--all", Arg.Set all_links, " Keep all links";
     ]
     (fun s ->
-       Printf.eprintf "Error: unexpected argument %S\n%!" s;
-       exit 2)
-    "ocp-cmtdeps: computes dependencies between compilation units from .cmt files";
+       dirs := s :: !dirs)
+    "ocp-cmtdeps [OPTIONS] [SRCDIRS]: computes dependencies between compilation units from .cmt files found in SRCDIRS (or . if not specified)";
 
   let add_source filename =
     Printf.eprintf "Source: %S\n%!" filename ;
@@ -132,13 +132,15 @@ let main () =
 
     end
   in
-  begin
-    let glob = if !use_cmis then "*.cmi" else "*.cmt*" in
-    EzFile.iter_dir "." ~f
-      ~select: ( EzFile.select ~deep:true ~glob () ) ;
-  end;
-  EzFile.iter_dir "." ~f:add_source
-    ~select: ( EzFile.select ~deep:true ~glob:"*.ml*" ~ignore:"_*" () ) ;
+  let dirs = match !dirs with
+      [] -> [ "." ]
+    | dirs -> List.rev dirs
+  in
+  let glob = if !use_cmis then "*.cmi" else "*.cmt*" in
+  let obj_select = EzFile.select ~deep:true ~glob () in
+  let src_select = EzFile.select ~deep:true ~glob:"*.ml*" ~ignore:"_*" () in
+  EzFile.iter_dir ~f ~select:obj_select "." ;
+  List.iter ( EzFile.iter_dir ~f:add_source ~select: src_select ) dirs ;
 
   let ( sorted, cycles, _others ) = TOPOSORT.sort !source_modules in
 
