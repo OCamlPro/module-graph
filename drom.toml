@@ -1,5 +1,7 @@
 [project]
 drom-version = "0.1"
+share-repo = "https://github.com/OCamlPro/drom-share"
+share-version = "0.9.2"
 
 [project]
 authors = ["Fabrice Le Fessant <fabrice.le_fessant@origin-labs.com>"]
@@ -10,6 +12,7 @@ github-organization = "ocamlpro"
 license = "LGPL2"
 min-edition = "4.07.0"
 name = "ocp-cmtdeps"
+skeleton = "program"
 synopsis = "The ocp-cmtdeps project"
 version = "0.1.0"
 
@@ -24,7 +27,8 @@ version = "0.1.0"
 # homepage = "...homepage..."
 
 [project]
-description = """This is the description
+description = """
+This is the description
 of the ocp-cmtdeps OCaml project
 """
 
@@ -63,6 +67,11 @@ share-dirs = ["share"]
 # ...
 
 # project-wide fields (depends on project skeleton)
+# examples:
+#  docker-alpine-image = "ocamlpro/ocaml:4.13"
+#  dune-lang = "2.1"
+#  readme-trailer = "..."
+#  dot-gitignore-trailer = "..."
 [fields]
 # ...
 
@@ -72,7 +81,7 @@ dir = "src/ocp-cmtdeps"
 
 [[package]]
 dir = "src/ocp_cmtdeps_lib"
-# edit 'src/ocp_deps_lib/package.toml' for package-specific options
+# edit 'src/ocp_cmtdeps_lib/package.toml' for package-specific options
 
 [[package]]
 dir = "src/ez_toposort"
@@ -81,10 +90,6 @@ dir = "src/ez_toposort"
 [[package]]
 dir = "src/ez_debug"
 # edit 'src/ez_debug/package.toml' for package-specific options
-
-[[package]]
-dir = "src/ez_file"
-# edit 'src/ez_file/package.toml' for package-specific options
 
 [[package]]
 dir = "src/ez_dot"

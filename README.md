@@ -1,5 +1,5 @@
 
-[![Actions Status](https://github.com/ocamlpro/ocp-cmtdeps/workflows/Main%20Workflow/badge.svg)](https://github.com/ocamlpro/ocp-cmtdeps/actions)[![Actions Status](https://github.com/ocamlpro/ocp-cmtdeps/workflows/doc-deploy/badge.svg)](https://github.com/ocamlpro/ocp-cmtdeps/actions)
+[![Actions Status](https://github.com/ocamlpro/ocp-cmtdeps/workflows/Main%20Workflow/badge.svg)](https://github.com/ocamlpro/ocp-cmtdeps/actions)
 [![Release](https://img.shields.io/github/release/ocamlpro/ocp-cmtdeps.svg)](https://github.com/ocamlpro/ocp-cmtdeps/releases)
 
 # ocp-cmtdeps

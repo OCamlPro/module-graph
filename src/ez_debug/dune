@@ -4,7 +4,11 @@
   (name ez_debug)
   (public_name ez_debug)
   (wrapped true)
+  ; use field 'dune-libraries' to add libraries without opam deps
   (libraries ocplib_stuff )
+  ; use field 'dune-flags' to set this value
+  (flags (:standard))
+  ; use field 'dune-stanzas' to add more stanzas here
   
   
   )
@@ -18,4 +22,5 @@
 (documentation
   (package ez_debug))
 
+; use field 'dune-trailer' to add more stuff here
 
