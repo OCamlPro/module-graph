@@ -39,7 +39,7 @@ kind = "program"
 # preprocess = "pps ppx_deriving_encoding"
 
 # files to skip while updating at package level
-# skip = []
+skip = ["main.ml"]
 
 # package library dependencies
 #   [dependencies]
@@ -61,5 +61,7 @@ ocp_cmtdeps_lib = "version"
 #  no-opam-test = "yes" 
 #  no-opam-doc = "yes" 
 #  gen-opam = "some" | "all" 
+#  dune-stanzas = "(flags (:standard (:include linking.sexp)))" 
+#  static-clibs = "unix" 
 [fields]
 # ...

@@ -3,9 +3,9 @@
 opam-version: "2.0"
 name: "ez_debug"
 version: "0.1.0"
-license: "LGPL-2.1-only with OCaml-LGPL-linking-exception"
+license: "LGPL-2.1-only WITH OCaml-LGPL-linking-exception"
 synopsis: "The ocp-cmtdeps project"
-description: """
+description: """\
 This is the description
 of the ocp-cmtdeps OCaml project
 """
@@ -37,10 +37,11 @@ install: [
 ]
 depends: [
   "ocaml" {>= "4.07.0"}
-  "dune" {>= "2.6.0"}
+  "dune" {>= "2.7.0"}
   "ocplib_stuff" {>= "0.1"}
   "ppx_inline_test" {with-test}
   "ppx_expect" {with-test}
   "odoc" {with-doc}
   "ocamlformat" {with-test}
 ]
+# Content of `opam-trailer` field:

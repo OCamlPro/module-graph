@@ -10,19 +10,24 @@ SPHINX_TARGET:=_drom/docs/sphinx
 ODOC_TARGET:=_drom/docs/doc/.
 
 
+# Use these non-generated files to include more rules here (and
+# Makefile.trailer at the end)
+-include Makefile.header
+-include Makefile.config
+
 all: build
 
 build:
 	./scripts/before.sh build
 	opam exec -- dune build @install
-	./scripts/copy-bin.sh ocp-cmtdeps ocp_cmtdeps_lib ez_toposort ez_debug ez_file ez_dot
+	./scripts/copy-bin.sh ocp-cmtdeps ocp_cmtdeps_lib ez_toposort ez_debug ez_dot
 	./scripts/after.sh build
 
 build-deps:
 	if ! [ -e _opam ]; then \
 	   opam switch create . 4.10.0 ; \
 	fi
-	opam install ./*.opam --deps-only
+	opam install ./opam/*.opam --deps-only
 
 
 .PHONY: doc-common odoc view sphinx
@@ -64,7 +69,7 @@ uninstall:
 	opam uninstall .
 
 dev-deps:
-	opam install ./*.opam --deps-only --with-doc --with-test
+	opam install ./opam/*.opam --deps-only --with-doc --with-test
 
 test:
 	./scripts/before.sh test
@@ -79,4 +84,5 @@ distclean: clean
 	rm -rf _opam _drom
 	./scripts/after.sh distclean
 
+-include Makefile.trailer
 

@@ -19,7 +19,7 @@
 
 (executable
  (name test2)
- (libraries ocp_cmtdeps_lib ez_toposort ez_debug ez_file ez_dot) ; add your own library here
+ (libraries ocp_cmtdeps_lib ez_toposort ez_debug ez_dot) ; add your own library here
  )
 
 (alias

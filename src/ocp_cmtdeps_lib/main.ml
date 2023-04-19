@@ -10,6 +10,7 @@
 (*                                                                        *)
 (**************************************************************************)
 
+open Ez_file.V1
 open Cmt_format
 open Cmi_format
 open EzCompat
