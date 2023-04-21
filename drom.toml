@@ -1,5 +1,5 @@
 [project]
-drom-version = "0.1"
+drom-version = "0.9.2~dev"
 share-repo = "https://github.com/OCamlPro/drom-share"
 share-version = "0.9.2"
 
@@ -13,8 +13,8 @@ license = "LGPL2"
 min-edition = "4.07.0"
 name = "ocp-cmtdeps"
 skeleton = "program"
-synopsis = "The ocp-cmtdeps project"
-version = "0.1.0"
+synopsis = "The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files"
+version = "0.2.0~dev1"
 
 # keys that you could also define:
 # odoc-target = "...odoc-target..."
@@ -28,8 +28,7 @@ version = "0.1.0"
 
 [project]
 description = """
-This is the description
-of the ocp-cmtdeps OCaml project
+The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files. ocp-cmtdeps scans the current directory and sub-directories looking for .cmt/.cmti/.cmi files, creates a memory graph of dependencies between them, and uses `dot` to display the graph into a pdf/image file.
 """
 
 [project]

@@ -74,17 +74,30 @@ let main () =
       "--ignore-module", Arg.String (fun s -> ignore_module := Some s),
       "REGEXP Ignore modules matching REGEXP (glob kind)";
 
+      "-X", Arg.String (fun s -> ignore_module := Some s),
+      "REGEXP Ignore modules matching REGEXP (glob kind)";
+
       "--remove-pack", Arg.String (fun s -> remove_pack := Some s),
+      "MODNAME Keep only modules within pack MODNAME, and display without prefix (MODNAME__)";
+
+      "-R", Arg.String (fun s -> remove_pack := Some s),
       "MODNAME Keep only modules within pack MODNAME, and display without prefix (MODNAME__)";
 
       "--format", Arg.String (fun s -> format := s),
       "FORMAT Generate deps.FORMAT instead of deps.pdf (using FORMAT encoding)";
 
+      "-T", Arg.String (fun s -> format := s),
+      "FORMAT Generate deps.FORMAT instead of deps.pdf (using FORMAT encoding)";
+
       "--output", Arg.String (fun s -> basename := s),
+      "BASENAME Name of file to generate (BASENAME.dot and BASENAME.FORMAT)";
+
+      "-o", Arg.String (fun s -> basename := s),
       "BASENAME Name of file to generate (BASENAME.dot and BASENAME.FORMAT)";
 
       "--cmi", Arg.Set use_cmis, " Use .cmi files";
       "--all-links", Arg.Set all_links, " Keep all links";
+      "-A", Arg.Set all_links, " Keep all links";
 
       "--text-summary", Arg.Set summary, " Print a text summary";
       "--verbose", Arg.Set verbose, " Verbose mode";
@@ -95,7 +108,7 @@ let main () =
 
   let remove_prefix = match !remove_pack with
     | None -> None
-    | Some s -> Some ( s ^ "__" )
+    | Some modname -> Some ( modname, modname ^ "__" )
   in
 
   let globber ?pathname glob =
@@ -119,10 +132,10 @@ let main () =
       Printf.eprintf "   add_dep %S\n%!" name;
     let name = match remove_prefix with
       | None -> name
-      | Some prefix ->
+      | Some (_packname, prefix) ->
           match EzString.chop_prefix ~prefix name with
-          | None -> name
           | Some name -> name
+          | None -> name
     in
     if name <> m.name
     && EzString.chop_prefix ~prefix:( name ^ "__" ) m.name = None
@@ -163,10 +176,10 @@ let main () =
     let check_modname modname =
       match remove_prefix with
       | None -> check_modname modname
-      | Some prefix ->
+      | Some (_name, prefix) ->
           match EzString.chop_prefix ~prefix modname with
-          | None -> ()
           | Some modname -> check_modname modname
+          | None -> ()
     in
 
     check_modname modname
@@ -223,7 +236,9 @@ let main () =
           if obj_glob file then
             add_object ~dir filename
           else
-          if file <> "_opam" && Sys.is_directory (dir // filename ) then
+          if file <> "_opam" &&
+             try Sys.is_directory (dir // filename ) with _ -> false
+          then
             iter filename
         ) files
     in
@@ -258,6 +273,7 @@ let main () =
           ) m.deps ;
       ) ( List.rev sorted ) ;
 
+  let nedges = ref 0 in
   List.iter (fun m ->
       match m.dot with
       | None -> ()
@@ -269,6 +285,7 @@ let main () =
               | None -> ()
               | Some dot2 ->
                   Ez_dot.V1.add_edge dot dot2 [];
+                  incr nedges ;
                   if !summary then
                     Printf.printf "%s " m2.name ;
             ) m.deps ;
@@ -285,5 +302,6 @@ let main () =
   Ez_dot.V1.save graph dotfile ;
   let outfile = !basename ^ "." ^ !format in
   Ez_dot.V1.dot2file ~dotfile ~format:!format ~outfile;
-  Printf.eprintf "Generated %S and %S\n%!" dotfile outfile;
+  Printf.eprintf "Generated %d edges in %S and %S\n%!"
+    !nedges dotfile outfile;
   ()
