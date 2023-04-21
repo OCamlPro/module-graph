@@ -2,12 +2,12 @@
 # Do not modify, or add to the `skip` field of `drom.toml`.
 opam-version: "2.0"
 name: "ez_debug"
-version: "0.1.0"
+version: "0.2.0~dev1"
 license: "LGPL-2.1-only WITH OCaml-LGPL-linking-exception"
-synopsis: "The ocp-cmtdeps project"
+synopsis:
+  "The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files"
 description: """\
-This is the description
-of the ocp-cmtdeps OCaml project
+The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files. ocp-cmtdeps scans the current directory and sub-directories looking for .cmt/.cmti/.cmi files, creates a memory graph of dependencies between them, and uses `dot` to display the graph into a pdf/image file.
 """
 authors: ["Fabrice Le Fessant <fabrice.le_fessant@origin-labs.com>"]
 maintainer: ["Fabrice Le Fessant <fabrice.le_fessant@origin-labs.com>"]
