@@ -29,50 +29,7 @@
  (depends
    (ocaml (>= 4.07.0))
    ocaml-base-compiler
-   (ez_toposort ( >= 0.1 ))
    (ez_file ( >= 0.3 ))
-   (ez_dot ( >= 0.1 ))
-   ppx_inline_test
-   ppx_expect
-   odoc
-   ocamlformat
-  )
- )
-
-(package
- (name ez_toposort)
- (synopsis "The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files")
- (description "The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files. ocp-cmtdeps scans the current directory and sub-directories looking for .cmt/.cmti/.cmi files, creates a memory graph of dependencies between them, and uses `dot` to display the graph into a pdf/image file.\n")
- (depends
-   (ocaml (>= 4.07.0))
-   (ez_debug ( >= 0.1 ))
-   ppx_inline_test
-   ppx_expect
-   odoc
-   ocamlformat
-  )
- )
-
-(package
- (name ez_debug)
- (synopsis "The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files")
- (description "The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files. ocp-cmtdeps scans the current directory and sub-directories looking for .cmt/.cmti/.cmi files, creates a memory graph of dependencies between them, and uses `dot` to display the graph into a pdf/image file.\n")
- (depends
-   (ocaml (>= 4.07.0))
-   (ocplib_stuff ( >= 0.1 ))
-   ppx_inline_test
-   ppx_expect
-   odoc
-   ocamlformat
-  )
- )
-
-(package
- (name ez_dot)
- (synopsis "The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files")
- (description "The ocp-cmtdeps tool generates a graph of dependencies between OCaml modules using compiled object files. ocp-cmtdeps scans the current directory and sub-directories looking for .cmt/.cmti/.cmi files, creates a memory graph of dependencies between them, and uses `dot` to display the graph into a pdf/image file.\n")
- (depends
-   (ocaml (>= 4.07.0))
    ppx_inline_test
    ppx_expect
    odoc

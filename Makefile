@@ -20,7 +20,7 @@ all: build
 build:
 	./scripts/before.sh build
 	opam exec -- dune build @install
-	./scripts/copy-bin.sh ocp-cmtdeps ocp_cmtdeps_lib ez_toposort ez_debug ez_dot
+	./scripts/copy-bin.sh ocp-cmtdeps ocp_cmtdeps_lib
 	./scripts/after.sh build
 
 build-deps:

@@ -10,6 +10,8 @@
 (*                                                                        *)
 (**************************************************************************)
 
+module V1 = struct
+
 open EzCompat
 
 let split s c =
@@ -44,7 +46,7 @@ type debug_unit = {
      mutable source_verbose : int;
    }
 
-let default_source = ""
+let default_source_name = ""
 let debug_units = ref []
 let debug_sources = ref StringMap.empty
 let output = ref (fun s -> Printf.eprintf "%s\n%!"s)
@@ -83,7 +85,7 @@ end = struct
 
   let debug_unit =
     let unit_sources = List.map get_debug_source
-                              (default_source :: M.modules) in
+                              (default_source_name :: M.modules) in
     let debug_unit = {
       unit_verbose = 0;
       unit_sources;
@@ -120,7 +122,17 @@ let set_verbosity_source source_name n =
   s.source_verbose <- n;
   update_debug_units ()
 
-let set_verbosity n = set_verbosity_source default_source n
+let set_verbosity ?(source=default_source_name) n =
+  set_verbosity_source source n
+
+let get_verbosity ?(source=default_source_name) () =
+  let s = get_debug_source source in
+  s.source_verbose
+
+module DEFAULT = MAKE(struct
+    let modules = [ "" ]
+  end)
+include DEFAULT
 
 let set_verbosity_parse s =
   frozen_debug_units := true;
@@ -159,3 +171,5 @@ let register_output f = output := f
 
 let () =
   set_verbosity_env "EZ_DEBUG"
+
+end

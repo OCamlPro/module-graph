@@ -18,7 +18,7 @@
 (*  SOFTWARE.                                                             *)
 (**************************************************************************)
 
-
+module V1 = struct
 (*
 This file generate a .dot file to be processed by "dot" to generate a
 .ps file.
@@ -245,3 +245,5 @@ let dot2file ~dotfile ~format ~outfile =
   let e = Sys.command (
       Printf.sprintf "dot -T%s < %s > %s" format dotfile outfile) in
   if e <> 0 then failwith "Ocamldot: error while dot was processing file"
+
+end
