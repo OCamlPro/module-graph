@@ -17,7 +17,6 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
-          - windows-latest
         ocaml-compiler:
           - 4.10.0
         skip_test:
@@ -42,7 +41,7 @@ jobs:
         id: cache-opam
         with:
           path: ~/.opam
-          key: v2-${{ runner.os }}-ocp-cmtdeps-${{ matrix.ocaml-compiler }}-${{ hashFiles('opam/*.opam') }}
+          key: v2-${{ runner.os }}-module-graph-${{ matrix.ocaml-compiler }}-${{ hashFiles('opam/*.opam') }}
 #          restore-keys: |
 #            v2-${{ runner.os }}-opam-${{ matrix.ocaml-compiler }}-
 
@@ -62,7 +61,7 @@ jobs:
 
       - run: opam pin add . -y --no-action
 
-      - run: opam depext -y ocp-cmtdeps ocp_cmtdeps_lib
+      - run: opam depext -y module-graph
 #        if: steps.cache-opam.outputs.cache-hit != 'true'
 
       - run: opam install -y opam/*.opam --deps-only --with-test

@@ -6,5 +6,5 @@
   (pps ppx_expect))
  (inline_tests
   (modes best)) ; add js for testing with nodejs
- (libraries ocp_cmtdeps_lib) ; add your project libraries here
+ (libraries ) ; add your project libraries here
  )

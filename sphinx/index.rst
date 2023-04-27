@@ -1,22 +1,22 @@
-.. ocp-cmtdeps documentation master file, created by
+.. module-graph documentation master file, created by
    drom new
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to ocp-cmtdeps
+Welcome to module-graph
 ================
 
 .. toctree::
    :maxdepth: 2
    :caption: Documentation
 
-   Home <https://ocamlpro.github.io/ocp-cmtdeps>
+   Home <https://ocamlpro.github.io/module-graph>
    about
+   usage
    install
-   API doc <https://ocamlpro.github.io/ocp-cmtdeps/doc>
    license
 
-   Devel and Issues on Github <https://github.com/ocamlpro/ocp-cmtdeps>
+   Devel and Issues on Github <https://github.com/ocamlpro/module-graph>
 
 
 Indices and tables

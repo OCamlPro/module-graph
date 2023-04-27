@@ -1,6 +1,6 @@
 
 # name of package
-name = "ocp-cmtdeps"
+name = "module-graph"
 skeleton = "driver"
 
 # version if different from project version
@@ -46,7 +46,10 @@ skip = ["main.ml"]
 #   ez_file = ">=0.1 <1.3"
 #   base-unix = { libname = "unix", version = ">=base" } 
 [dependencies]
-ocp_cmtdeps_lib = "version"
+ez_file = "0.3"
+
+[dependencies.ocaml-base-compiler]
+libname = "compiler-libs.common"
 
 # package tools dependencies
 [tools]
