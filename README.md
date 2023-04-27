@@ -103,7 +103,7 @@ You can display the filenames in the grap instead of the module names
 using the `--filenames` option:
 
 ```
-$ module-graph --filename
+$ module-graph --filenames
 Generated 23 edges in "deps.dot" and "deps.pdf"
 $ evince deps.pdf
 ```

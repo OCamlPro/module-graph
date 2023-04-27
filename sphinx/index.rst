@@ -12,8 +12,8 @@ Welcome to module-graph
 
    Home <https://ocamlpro.github.io/module-graph>
    about
+   usage
    install
-   API doc <https://ocamlpro.github.io/module-graph/doc>
    license
 
    Devel and Issues on Github <https://github.com/ocamlpro/module-graph>
