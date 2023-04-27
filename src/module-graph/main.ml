@@ -104,7 +104,7 @@ let main () =
     ]
     (fun s ->
        dirs := s :: !dirs)
-    "ocp-cmtdeps [OPTIONS] [SRCDIRS]: computes dependencies between compilation units from .cmt files found in SRCDIRS (or . if not specified)";
+    "module-graph [OPTIONS] [SRCDIRS]: computes dependencies between compilation units from .cmt files found in SRCDIRS (or . if not specified)";
 
   let remove_prefix = match !remove_pack with
     | None -> None
@@ -305,3 +305,5 @@ let main () =
   Printf.eprintf "Generated %d edges in %S and %S\n%!"
     !nedges dotfile outfile;
   ()
+
+let () = main ()

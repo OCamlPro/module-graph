@@ -5,17 +5,17 @@ version:0.9.0
 
 # hash of toml configuration files
 # used for generation of all files
-fc403311e64ebec179404a590cbdca48:.
+94ff01aeae7e36f1ccadbeafb6b1044d:.
 # end context for .
 
 # begin context for .github/workflows/workflow.yml
 # file .github/workflows/workflow.yml
-56106f0be3b306e7339a2f6e9bc79fa0:.github/workflows/workflow.yml
+8ec96584f9e01762ea74da36c257171d:.github/workflows/workflow.yml
 # end context for .github/workflows/workflow.yml
 
 # begin context for .gitignore
 # file .gitignore
-c31c5eb41dd814799eb48094cad1fd4f:.gitignore
+f499ac490889858f66a895197a0ecedc:.gitignore
 # end context for .gitignore
 
 # begin context for .ocamlformat
@@ -45,7 +45,7 @@ e31b19b601ab25353ef16d67127735f1:LICENSE.md
 
 # begin context for Makefile
 # file Makefile
-1880c0210dbccef3ae51e1b6bc4fa7fa:Makefile
+a20c687d83fdaf442eb1f30e8c488570:Makefile
 # end context for Makefile
 
 # begin context for README.md
@@ -70,7 +70,7 @@ e739f3026aa997af4026bc428f4c9ef6:docs/favicon.png
 
 # begin context for docs/index.html
 # file docs/index.html
-07789c611c4098d02f44ac48406a1a3e:docs/index.html
+805c977848bec15fc83fa1969e98eeda:docs/index.html
 # end context for docs/index.html
 
 # begin context for docs/sphinx/index.html
@@ -95,7 +95,7 @@ ecec0361a73f1ac25f6251dd335f8092:drom.toml
 
 # begin context for dune-project
 # file dune-project
-03af98f216c9716576d43878f54ff135:dune-project
+570ae17d14ecb6b4a23e78f579826fd4:dune-project
 # end context for dune-project
 
 # begin context for dune_
@@ -117,6 +117,11 @@ ccacc8d0161f7e070e7845ff98d6e586:opam/ez_dot.opam
 # file opam/ez_toposort.opam
 86a1db4fc75316ac0cde22e4a141db00:opam/ez_toposort.opam
 # end context for opam/ez_toposort.opam
+
+# begin context for opam/module-graph.opam
+# file opam/module-graph.opam
+31784d2a7b2d275add62f7b6e4c3c7f0:opam/module-graph.opam
+# end context for opam/module-graph.opam
 
 # begin context for opam/ocp-cmtdeps.opam
 # file opam/ocp-cmtdeps.opam
@@ -155,22 +160,22 @@ b243cb6f630e2b0483b76eef1572ff95:scripts/static-build.sh
 
 # begin context for sphinx/about.rst
 # file sphinx/about.rst
-c4a4c149be5b4973724e85e6a3f99380:sphinx/about.rst
+1a3688d97d22f7e7ae8ff66343925699:sphinx/about.rst
 # end context for sphinx/about.rst
 
 # begin context for sphinx/conf.py
 # file sphinx/conf.py
-c0060f14c079a76a320d493df0a181b2:sphinx/conf.py
+1a29f421738e2f42d885f4db141405e2:sphinx/conf.py
 # end context for sphinx/conf.py
 
 # begin context for sphinx/index.rst
 # file sphinx/index.rst
-728aeeb0a0c123a973081b0f9981d297:sphinx/index.rst
+8a4b714c5379e0511dee8cf727bece15:sphinx/index.rst
 # end context for sphinx/index.rst
 
 # begin context for sphinx/install.rst
 # file sphinx/install.rst
-9c450e4d7f031c0042e426bfe5f3d000:sphinx/install.rst
+e45339490baff1d08d67261ec1bddb80:sphinx/install.rst
 # end context for sphinx/install.rst
 
 # begin context for sphinx/license.rst
@@ -178,49 +183,24 @@ c0060f14c079a76a320d493df0a181b2:sphinx/conf.py
 7f09d28eb87ab9f2650899f85835e74a:sphinx/license.rst
 # end context for sphinx/license.rst
 
-# begin context for src/ocp-cmtdeps/dune
-# file src/ocp-cmtdeps/dune
-4aa1cf63d6f25be565d531401dcdea0d:src/ocp-cmtdeps/dune
-# end context for src/ocp-cmtdeps/dune
+# begin context for src/module-graph/dune
+# file src/module-graph/dune
+325f0a19c35f64a12197483b2e529e7e:src/module-graph/dune
+# end context for src/module-graph/dune
 
-# begin context for src/ocp-cmtdeps/index.mld
-# file src/ocp-cmtdeps/index.mld
-de9b0a7c6020a6662f8abf6cddd1f5e1:src/ocp-cmtdeps/index.mld
-# end context for src/ocp-cmtdeps/index.mld
+# begin context for src/module-graph/index.mld
+# file src/module-graph/index.mld
+76aa38e7227a39579e3f03db801b3457:src/module-graph/index.mld
+# end context for src/module-graph/index.mld
 
-# begin context for src/ocp-cmtdeps/linking_flags.sh
-# file src/ocp-cmtdeps/linking_flags.sh
-9fdfca3cc53df639758ff04fe09d3243:src/ocp-cmtdeps/linking_flags.sh
-# end context for src/ocp-cmtdeps/linking_flags.sh
-
-# begin context for src/ocp-cmtdeps/package.toml
-# file src/ocp-cmtdeps/package.toml
-ba5b4cbe7ae4ebe722ba07943c2bbc93:src/ocp-cmtdeps/package.toml
-# end context for src/ocp-cmtdeps/package.toml
-
-# begin context for src/ocp_cmtdeps_lib/dune
-# file src/ocp_cmtdeps_lib/dune
-8bf56d67be7e93c195d8f03f90379c80:src/ocp_cmtdeps_lib/dune
-# end context for src/ocp_cmtdeps_lib/dune
-
-# begin context for src/ocp_cmtdeps_lib/index.mld
-# file src/ocp_cmtdeps_lib/index.mld
-2075ab4935ad06607582c34aebfcd4a8:src/ocp_cmtdeps_lib/index.mld
-# end context for src/ocp_cmtdeps_lib/index.mld
-
-# begin context for src/ocp_cmtdeps_lib/package.toml
-# file src/ocp_cmtdeps_lib/package.toml
-b406a52f343f8bd549b611d9f04576d8:src/ocp_cmtdeps_lib/package.toml
-# end context for src/ocp_cmtdeps_lib/package.toml
-
-# begin context for src/ocp_cmtdeps_lib/version.mlt
-# file src/ocp_cmtdeps_lib/version.mlt
-65f4a6f64d555495d59537bd5b722c2a:src/ocp_cmtdeps_lib/version.mlt
-# end context for src/ocp_cmtdeps_lib/version.mlt
+# begin context for src/module-graph/linking_flags.sh
+# file src/module-graph/linking_flags.sh
+9fdfca3cc53df639758ff04fe09d3243:src/module-graph/linking_flags.sh
+# end context for src/module-graph/linking_flags.sh
 
 # begin context for test/expect-tests/dune
 # file test/expect-tests/dune
-211c75d1aabe99732e2097559bd9b88e:test/expect-tests/dune
+8ef72e0447cc68be35b3a5b6755b297f:test/expect-tests/dune
 # end context for test/expect-tests/dune
 
 # begin context for test/expect-tests/test.ml
@@ -230,7 +210,7 @@ b406a52f343f8bd549b611d9f04576d8:src/ocp_cmtdeps_lib/package.toml
 
 # begin context for test/inline-tests/dune
 # file test/inline-tests/dune
-174c3cd57ac9e06ad9bacb401914b6f9:test/inline-tests/dune
+1db929404d44aa192f1fa7a3c7a1f2b9:test/inline-tests/dune
 # end context for test/inline-tests/dune
 
 # begin context for test/inline-tests/test.ml
@@ -240,7 +220,7 @@ b406a52f343f8bd549b611d9f04576d8:src/ocp_cmtdeps_lib/package.toml
 
 # begin context for test/output-tests/dune
 # file test/output-tests/dune
-9aaa46548a3104e94063bb44b3231aad:test/output-tests/dune
+7ec9f3e162695cb70a0314b0ebcb428f:test/output-tests/dune
 # end context for test/output-tests/dune
 
 # begin context for test/output-tests/test1.expected

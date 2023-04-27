@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# ocp-cmtdeps documentation build configuration file, created by
+# module-graph documentation build configuration file, created by
 # sphinx-quickstart.
 #
 # This file is execfile()d with the current directory set to its
@@ -50,7 +50,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = 'ocp-cmtdeps'
+project = 'module-graph'
 copyright = 'OCamlPro SAS'
 author = 'Fabrice Le Fessant <fabrice.le_fessant@origin-labs.com>'
 
@@ -167,7 +167,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ocp-cmtdeps.tex', 'ocp-cmtdeps Documentation',
+    (master_doc, 'module-graph.tex', 'module-graph Documentation',
      'author', 'manual'),
 ]
 
@@ -177,7 +177,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ocp-cmtdeps', 'ocp-cmtdeps Documentation',
+    (master_doc, 'module-graph', 'module-graph Documentation',
      [author], 1)
 ]
 
@@ -188,8 +188,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ocp-cmtdeps', 'ocp-cmtdeps Documentation',
-     author, 'ocp-cmtdeps', 'One line description of project.',
+    (master_doc, 'module-graph', 'module-graph Documentation',
+     author, 'module-graph', 'One line description of project.',
      'Miscellaneous'),
 ]
 

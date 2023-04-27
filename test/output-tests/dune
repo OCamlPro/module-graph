@@ -19,7 +19,7 @@
 
 (executable
  (name test2)
- (libraries ocp_cmtdeps_lib) ; add your own library here
+ (libraries ) ; add your own library here
  )
 
 (alias

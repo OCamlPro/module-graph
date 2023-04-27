@@ -4,14 +4,14 @@ How to install
 Install with :code:`opam`
 -------------------------
 
-If :code:`ocp-cmtdeps` is available in your opam repository, you can just call::
+If :code:`module-graph` is available in your opam repository, you can just call::
 
-  opam install ocp-cmtdeps
+  opam install module-graph
 
 Build and install with :code:`dune`
 -----------------------------------
 
-Checkout the sources of :code:`ocp-cmtdeps` in a directory.
+Checkout the sources of :code:`module-graph` in a directory.
 
 You need a switch with at least version :code:`4.07.0` of OCaml,
 you can for example create it with::
