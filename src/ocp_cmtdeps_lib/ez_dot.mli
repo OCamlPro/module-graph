@@ -18,6 +18,7 @@
 (*  SOFTWARE.                                                             *)
 (**************************************************************************)
 
+module V1 : sig
 
 type graph =
   { graph_name: string;
@@ -74,3 +75,5 @@ val view : graph -> unit
 
 (* format: ps, pdf, png *)
 val dot2file : dotfile:string -> format:string -> outfile:string -> unit
+
+end

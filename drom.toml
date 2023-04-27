@@ -82,15 +82,3 @@ dir = "src/ocp-cmtdeps"
 dir = "src/ocp_cmtdeps_lib"
 # edit 'src/ocp_cmtdeps_lib/package.toml' for package-specific options
 
-[[package]]
-dir = "src/ez_toposort"
-# edit 'src/ez_toposort/package.toml' for package-specific options
-
-[[package]]
-dir = "src/ez_debug"
-# edit 'src/ez_debug/package.toml' for package-specific options
-
-[[package]]
-dir = "src/ez_dot"
-# edit 'src/ez_dot/package.toml' for package-specific options
-

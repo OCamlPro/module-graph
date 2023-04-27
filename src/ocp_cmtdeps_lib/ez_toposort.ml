@@ -10,6 +10,8 @@
 (*                                                                        *)
 (**************************************************************************)
 
+module V1 = struct
+
 open EzCompat
 
 (* To debug, set verbosity of OcpToposort to 11:
@@ -157,9 +159,10 @@ end) = (struct
       ) !graph;
       if DEBUG.verbose 11 then
         IntMap.iter (fun _ (_,node) ->
-          Ez_debug.V1.printf "Remaining node %d (out=%d/%d,in=%d,pos=%d)"
-            node.node_id
-            node.node_outgoing_nbr
+            Ez_debug.V1.printf
+              11 "Remaining node %d (out=%d/%d,in=%d,pos=%d)"
+              node.node_id
+              node.node_outgoing_nbr
             (IntMap.cardinal node.node_outgoing_edges)
             (IntMap.cardinal node.node_incoming_edges)
             node.node_position;
@@ -182,3 +185,5 @@ end) = (struct
     end
 
 end)
+
+end

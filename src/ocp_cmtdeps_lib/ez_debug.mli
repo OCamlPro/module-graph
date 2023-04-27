@@ -10,6 +10,7 @@
 (*                                                                        *)
 (**************************************************************************)
 
+module V1 : sig
 (*
   Coding standards:
    Level 0 = no debug
@@ -24,7 +25,9 @@ module MAKE( M: sig
   val printf : int -> ('a, unit, string, unit) format4 -> 'a
 end
 
-val printf : ('a, unit, string, unit) format4 -> 'a
+(* debug/logging of default *)
+val printf : int -> ('a, unit, string, unit) format4 -> 'a
+val verbose : int -> bool
 
 (* [set_verbosity_env env_var] can be used to parse the [env_var]
   environment variable and use it to set the verbosity.
@@ -40,8 +43,18 @@ val printf : ('a, unit, string, unit) format4 -> 'a
 val set_verbosity_env : string -> unit
 
 (* [set_verbosity n] sets the default verbosity. It thus applies to
-all modules, regardless of their sources. *)
-val set_verbosity : int -> unit
+   all modules, regardless of their sources.
+   [set_verbosity ~source n] sets the verbosity for the given source.
+   Raise an exception if the source does not exist.
+ *)
+val set_verbosity : ?source:string -> int -> unit
+
+
+(* [get_verbosity ()] returns the default verbosity.
+   [get_verbosity ~source ()] returns the verbosity for the given source.
+    Raise an exception if the source does not exist.
+ *)
+val get_verbosity : ?source:string -> unit -> int
 
 (* [set_verbosity_parse str] sets the verbosity using a string
 [str]. The string must have the same format as the environment
@@ -53,6 +66,9 @@ val set_verbosity_parse : string -> unit
 val set_verbosity_source : string -> int -> unit
 
 (* [register_output f] is used to redirect all debug output from
-  [EzDebug.printf]. Before the first call to [register_output], the
-  output is sent to [stderr].*)
+   [EzDebug.printf]. Before the first call to [register_output], the
+   output is sent to [stderr]. The output function should add a
+   newline after every string.*)
 val register_output : (string -> unit) -> unit
+
+end

@@ -6,4 +6,4 @@
   (pps ppx_inline_test))
  (inline_tests
   (modes best)) ; add js for testing with nodejs
- (libraries ocp_cmtdeps_lib ez_toposort ez_debug ez_dot))
+ (libraries ocp_cmtdeps_lib))

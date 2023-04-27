@@ -10,6 +10,8 @@
 (*                                                                        *)
 (**************************************************************************)
 
+module V1 : sig
+
 (** Abstract type for a node *)
 type node
 
@@ -33,3 +35,5 @@ module MAKE :
           * M.t list (* other non-sorted nodes *)
 
       end
+
+end
