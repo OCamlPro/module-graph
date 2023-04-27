@@ -14,7 +14,7 @@ min-edition = "4.07.0"
 name = "module-graph"
 skeleton = "program"
 synopsis = "The module-graph tool generates a graph of dependencies between OCaml modules using compiled object files"
-version = "0.2.0~dev1"
+version = "0.2.0"
 
 # keys that you could also define:
 # odoc-target = "...odoc-target..."
