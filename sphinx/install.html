@@ -4,9 +4,9 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How to install &mdash; ocp-cmtdeps master
- (31cc1dc
-) (2023/04/27 05:49) documentation</title>
+  <title>How to install &mdash; module-graph master
+ (aeb0906
+) (2023/04/27 08:01) documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/fixes.css" type="text/css" />
@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Copyright and License" href="license.html" />
-    <link rel="prev" title="About" href="about.html" /> 
+    <link rel="prev" title="How to use" href="usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -28,11 +28,11 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> ocp-cmtdeps
+            <a href="index.html" class="icon icon-home"> module-graph
           </a>
               <div class="version">
                 master
- (31cc1dc
+ (aeb0906
 )
               </div>
 <div role="search">
@@ -45,16 +45,16 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference external" href="https://ocamlpro.github.io/ocp-cmtdeps">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://ocamlpro.github.io/module-graph">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">How to use</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How to install</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install-with-opam">Install with <code class="code docutils literal notranslate"><span class="pre">opam</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#build-and-install-with-dune">Build and install with <code class="code docutils literal notranslate"><span class="pre">dune</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="https://ocamlpro.github.io/ocp-cmtdeps/doc">API doc</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">Copyright and License</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/ocamlpro/ocp-cmtdeps">Devel and Issues on Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ocamlpro/module-graph">Devel and Issues on Github</a></li>
 </ul>
 
         </div>
@@ -63,7 +63,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ocp-cmtdeps</a>
+          <a href="index.html">module-graph</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -85,14 +85,14 @@
 <h1>How to install<a class="headerlink" href="#how-to-install" title="Permalink to this headline"></a></h1>
 <section id="install-with-opam">
 <h2>Install with <code class="code docutils literal notranslate"><span class="pre">opam</span></code><a class="headerlink" href="#install-with-opam" title="Permalink to this headline"></a></h2>
-<p>If <code class="code docutils literal notranslate"><span class="pre">ocp-cmtdeps</span></code> is available in your opam repository, you can just call:</p>
-<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="n">opam</span> <span class="n">install</span> <span class="n">ocp</span><span class="o">-</span><span class="n">cmtdeps</span>
+<p>If <code class="code docutils literal notranslate"><span class="pre">module-graph</span></code> is available in your opam repository, you can just call:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="n">opam</span> <span class="n">install</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span>
 </pre></div>
 </div>
 </section>
 <section id="build-and-install-with-dune">
 <h2>Build and install with <code class="code docutils literal notranslate"><span class="pre">dune</span></code><a class="headerlink" href="#build-and-install-with-dune" title="Permalink to this headline"></a></h2>
-<p>Checkout the sources of <code class="code docutils literal notranslate"><span class="pre">ocp-cmtdeps</span></code> in a directory.</p>
+<p>Checkout the sources of <code class="code docutils literal notranslate"><span class="pre">module-graph</span></code> in a directory.</p>
 <p>You need a switch with at least version <code class="code docutils literal notranslate"><span class="pre">4.07.0</span></code> of OCaml,
 you can for example create it with:</p>
 <div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="n">opam</span> <span class="n">switch</span> <span class="n">create</span> <span class="mi">4</span><span class="o">.</span><span class="mi">10</span><span class="o">.</span><span class="mi">0</span>
@@ -128,7 +128,7 @@ targets:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="about.html" class="btn btn-neutral float-left" title="About" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-left" title="How to use" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="license.html" class="btn btn-neutral float-right" title="Copyright and License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

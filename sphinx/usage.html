@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to use &mdash; module-graph master
+ (aeb0906
+) (2023/04/27 08:01) documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/fixes.css" type="text/css" />
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to install" href="install.html" />
+    <link rel="prev" title="About" href="about.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> module-graph
+          </a>
+              <div class="version">
+                master
+ (aeb0906
+)
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://ocamlpro.github.io/module-graph">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">How to install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Copyright and License</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/ocamlpro/module-graph">Devel and Issues on Github</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">module-graph</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>How to use</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-use">
+<h1>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this headline"></a></h1>
+<p>The main difference between <code class="code docutils literal notranslate"><span class="pre">module-graph</span></code> and other tools based
+on <code class="code docutils literal notranslate"><span class="pre">ocamldep</span></code> is that <code class="code docutils literal notranslate"><span class="pre">module-graph</span></code> does not need to
+understand how your project is built: it just scans the directories
+looking for binary objects and computes the links between them.</p>
+<p>In your project, just run:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span>
+<span class="nc">Generated</span> <span class="mi">23</span> <span class="n">edges</span> <span class="k">in</span> <span class="s2">&quot;deps.dot&quot;</span> <span class="ow">and</span> <span class="s2">&quot;deps.pdf&quot;</span>
+<span class="o">$</span> <span class="n">evince</span> <span class="n">deps</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<p>By default, <code class="code docutils literal notranslate"><span class="pre">module-graph</span></code> scans the current directory and its
+sub-directories, looking for <code class="code docutils literal notranslate"><span class="pre">.cmt/.cmti</span></code> files. It only ignores the
+<cite>_opam/</cite> sub-directory.</p>
+<p>You can specify another set of directories to scan:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span> <span class="o">_</span><span class="n">build</span><span class="o">/</span><span class="n">default</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">parsers</span>
+<span class="nc">Generated</span> <span class="mi">6</span> <span class="n">edges</span> <span class="k">in</span> <span class="s2">&quot;deps.dot&quot;</span> <span class="ow">and</span> <span class="s2">&quot;deps.pdf&quot;</span>
+</pre></div>
+</div>
+<p>You can change the format of the generated file with <code class="code docutils literal notranslate"><span class="pre">-T/--format</span>
+<span class="pre">FORMAT</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span> <span class="o">--</span><span class="n">format</span> <span class="n">png</span>
+<span class="nc">Generated</span> <span class="mi">23</span> <span class="n">edges</span> <span class="k">in</span> <span class="s2">&quot;deps.dot&quot;</span> <span class="ow">and</span> <span class="s2">&quot;deps.png&quot;</span>
+<span class="o">$</span> <span class="n">display</span> <span class="n">deps</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>You can change the name of the generated file with <code class="code docutils literal notranslate"><span class="pre">-o/--output</span>
+<span class="pre">BASENAME</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span> <span class="o">-</span><span class="n">o</span> <span class="n">alt</span><span class="o">-</span><span class="n">ergo</span><span class="o">-</span><span class="n">deps</span>
+<span class="nc">Generated</span> <span class="mi">23</span> <span class="n">edges</span> <span class="k">in</span> <span class="s2">&quot;alt-ergo-deps.dot&quot;</span> <span class="ow">and</span> <span class="s2">&quot;alt-ergo-deps.pdf&quot;</span>
+<span class="o">$</span> <span class="n">evince</span> <span class="n">alt</span><span class="o">-</span><span class="n">ergo</span><span class="o">-</span><span class="n">deps</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<p>In some cases, <code class="code docutils literal notranslate"><span class="pre">.cmt</span></code>/<cite>.cmti</cite> files are not available, so you may want
+to use <code class="code docutils literal notranslate"><span class="pre">.cmi</span></code> files with <code class="code docutils literal notranslate"><span class="pre">--cmi</span></code>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span> <span class="o">--</span><span class="n">cmi</span>
+<span class="nc">Generated</span> <span class="mi">21</span> <span class="n">edges</span> <span class="k">in</span> <span class="s2">&quot;deps.dot&quot;</span> <span class="ow">and</span> <span class="s2">&quot;deps.pdf&quot;</span>
+<span class="o">$</span> <span class="n">evince</span> <span class="n">deps</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<p>By default, <code class="code docutils literal notranslate"><span class="pre">module-graph</span></code> drops direct links between modules if these
+links are implied by transitive dependencies. You can keep them with
+<cite>-A/–all-links</cite>:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span> <span class="o">--</span><span class="n">all</span><span class="o">-</span><span class="n">links</span>
+<span class="nc">Generated</span> <span class="mi">32</span> <span class="n">edges</span> <span class="k">in</span> <span class="s2">&quot;deps.dot&quot;</span> <span class="ow">and</span> <span class="s2">&quot;deps.pdf&quot;</span>
+<span class="o">$</span> <span class="n">evince</span> <span class="n">deps</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<p>If modules are packed/wrapped within a module (default behavior for
+<cite>dune</cite>), you may use the <code class="code docutils literal notranslate"><span class="pre">-R/--remove-pack</span> <span class="pre">MODNAME</span></code> to filter modules
+(keeping only the ones within the pack) and remove the corresponding
+prefix:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span> <span class="o">--</span><span class="n">remove</span><span class="o">-</span><span class="n">pack</span> <span class="nc">AltErgoLib</span>
+<span class="nc">Generated</span> <span class="mi">19</span> <span class="n">edges</span> <span class="k">in</span> <span class="s2">&quot;deps.dot&quot;</span> <span class="ow">and</span> <span class="s2">&quot;deps.pdf&quot;</span>
+<span class="o">$</span> <span class="n">evince</span> <span class="n">deps</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<p>You can display the filenames in the grap instead of the module names
+using the <code class="code docutils literal notranslate"><span class="pre">--filenames</span></code> option:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span> <span class="o">--</span><span class="n">filenames</span>
+<span class="nc">Generated</span> <span class="mi">23</span> <span class="n">edges</span> <span class="k">in</span> <span class="s2">&quot;deps.dot&quot;</span> <span class="ow">and</span> <span class="s2">&quot;deps.pdf&quot;</span>
+<span class="o">$</span> <span class="n">evince</span> <span class="n">deps</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<p>You can filter out modules using a regexp with <code class="code docutils literal notranslate"><span class="pre">-X/--ignore-module</span>
+<span class="pre">REGEXP</span></code> where regexp is in the glob format:</p>
+<div class="highlight-ocaml notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="k">module</span><span class="o">-</span><span class="n">graph</span> <span class="o">-</span><span class="nc">X</span> <span class="k">&#39;</span><span class="nc">AltErgoLib__</span><span class="o">*</span><span class="k">&#39;</span>
+<span class="nc">Generated</span> <span class="mi">3</span> <span class="n">edges</span> <span class="k">in</span> <span class="s2">&quot;deps.dot&quot;</span> <span class="ow">and</span> <span class="s2">&quot;deps.pdf&quot;</span>
+<span class="o">$</span> <span class="n">evince</span> <span class="n">deps</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Raw Dependencies for <code class="code docutils literal notranslate"><span class="pre">module-graph</span></code>:</p></li>
+</ul>
+<blockquote>
+<div><p><img alt="module-graph-deps" src="/assets/images/module-graph-deps.png" /></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>All Dependencies for <code class="code docutils literal notranslate"><span class="pre">module-graph</span></code> (<code class="code docutils literal notranslate"><span class="pre">--all-links</span></code>):</p></li>
+</ul>
+<blockquote>
+<div><p><img alt="module-graph-deps-all" src="/assets/images/module-graph-deps-all.png" /></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Raw Dependencies for <code class="code docutils literal notranslate"><span class="pre">alt-ergo</span></code>:</p></li>
+</ul>
+<blockquote>
+<div><p><img alt="alt-ergo-deps" src="/assets/images/alt-ergo-deps.png" /></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Dependencies restricted to <code class="code docutils literal notranslate"><span class="pre">AltErgoLib</span></code> for <code class="code docutils literal notranslate"><span class="pre">alt-ergo</span></code> (<code class="code docutils literal notranslate"><span class="pre">--remove-pack</span> <span class="pre">AltErgoLib</span></code>):</p></li>
+</ul>
+<blockquote>
+<div><p><img alt="alt-ergo-deps-pack" src="/assets/images/alt-ergo-deps-pack.png" /></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="about.html" class="btn btn-neutral float-left" title="About" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install.html" class="btn btn-neutral float-right" title="How to install" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright OCamlPro SAS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
