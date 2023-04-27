@@ -76,22 +76,22 @@ REGEXP` where regexp is in the glob format::
 Examples
 --------
 
-.. |module-graph-deps| image:: //assets/images/module-graph-deps.png
+.. |module-graph-deps| image:: //module-graph/assets/images/module-graph-deps.png
 
 * Raw Dependencies for :code:`module-graph`:
  |module-graph-deps|
 
-.. |module-graph-deps-all| image:: //assets/images/module-graph-deps-all.png
+.. |module-graph-deps-all| image:: //module-graph/assets/images/module-graph-deps-all.png
 
 * All Dependencies for :code:`module-graph` (:code:`--all-links`):
  |module-graph-deps-all|
 
-.. |alt-ergo-deps| image:: //assets/images/alt-ergo-deps.png
+.. |alt-ergo-deps| image:: //module-graph/assets/images/alt-ergo-deps.png
 
 * Raw Dependencies for :code:`alt-ergo`:
  |alt-ergo-deps|
 
-.. |alt-ergo-deps-pack| image:: //assets/images/alt-ergo-deps-pack.png
+.. |alt-ergo-deps-pack| image:: //module-graph/assets/images/alt-ergo-deps-pack.png
 
 * Dependencies restricted to :code:`AltErgoLib` for :code:`alt-ergo` (:code:`--remove-pack AltErgoLib`):
  |alt-ergo-deps-pack|
