@@ -135,6 +135,7 @@ let add_path nodes list =
         ) nodes node1)
 
 let rename_node node name = node.node_name <- name
+let name node = node.node_name
 
 open Printf
 
@@ -242,8 +243,10 @@ let view g =
       raise e
 
 let dot2file ~dotfile ~format ~outfile =
-  let e = Sys.command (
-      Printf.sprintf "dot -T%s < %s > %s" format dotfile outfile) in
-  if e <> 0 then failwith "Ocamldot: error while dot was processing file"
+  let cmd = Printf.sprintf "dot -T%s < %s > %s" format dotfile outfile in
+  let e = Sys.command cmd in
+  if e <> 0 then
+    Printf.kprintf failwith
+      "ez_dot: error while dot was processing file while calling: %s" cmd
 
 end

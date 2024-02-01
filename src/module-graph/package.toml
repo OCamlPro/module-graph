@@ -47,6 +47,7 @@ skip = ["main.ml"]
 #   base-unix = { libname = "unix", version = ">=base" } 
 [dependencies]
 ez_file = "0.3"
+ocplib_stuff = "0.3"
 
 [dependencies.ocaml-base-compiler]
 libname = "compiler-libs.common"

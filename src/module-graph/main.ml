@@ -18,9 +18,6 @@ open EzFile.OP
 
 let use_filenames = ref false
 
-let graph = Ez_dot.V1.create "deps" []
-
-
 type module_ = {
   name : string ;
   mutable filenames : string list ;
@@ -29,12 +26,29 @@ type module_ = {
   mutable dot : Ez_dot.V1.node option ;
 }
 
-module TOPOSORT = Ez_toposort.V1.MAKE(struct
+type package = {
+  package_name : string ;
+  package_node : Ez_toposort.V1.node ;
+  package_dot : Ez_dot.V1.node ;
+  package_dir : string ;
+  mutable package_modules : StringSet.t ;
+  mutable package_deps : package StringMap.t ;
+}
+
+module MODULE_TOPOSORT = Ez_toposort.V1.MAKE(struct
     type t = module_
     let node t = t.node
     let iter_edges f t =
       StringMap.iter (fun _ t -> f t ) t.deps
     let name t = t.name
+  end)
+
+module PACKAGE_TOPOSORT = Ez_toposort.V1.MAKE(struct
+    type t = package
+    let node t = t.package_node
+    let iter_edges f t =
+      StringMap.iter (fun _ t -> f t ) t.package_deps
+    let name t = t.package_name
   end)
 
 let modules = Hashtbl.create 111
@@ -66,10 +80,14 @@ let main () =
   let verbose = ref false in
   let summary = ref false in
   let basename = ref "deps" in
+  let keep_external = ref false in
+  let list_modules = ref true in
+  let show_filename = ref true in
+
   Arg.parse
     [
-      "--filenames", Arg.Set use_filenames,
-      " Display filenames instead of modnames in deps.pdf";
+      "--dont-show-filename", Arg.Clear show_filename,
+      " Don't show filename in module nodes";
 
       "--ignore-module", Arg.String (fun s -> ignore_module := Some s),
       "REGEXP Ignore modules matching REGEXP (glob kind)";
@@ -101,6 +119,12 @@ let main () =
 
       "--text-summary", Arg.Set summary, " Print a text summary";
       "--verbose", Arg.Set verbose, " Verbose mode";
+
+      "--keep-external", Arg.Set keep_external,
+      " Keep external packages";
+
+      "--dont-list-modules", Arg.Clear list_modules,
+      " Don't list modules in packages";
     ]
     (fun s ->
        dirs := s :: !dirs)
@@ -143,6 +167,9 @@ let main () =
       m.deps <- StringMap.add name (find_module name) m.deps
   in
 
+
+  let graph = Ez_dot.V1.create "moduledeps" [] in
+
   let create_dot m filename =
     match m.dot with
     | Some _ -> ()
@@ -159,6 +186,7 @@ let main () =
   let check_modname modname ~filename f =
     let check_modname modname =
       let m = find_module modname in
+      (*      m.filenames <- filename :: m.filenames; *)
       f m
     in
     let check_modname modname =
@@ -254,11 +282,12 @@ let main () =
       EzFile.iter_dir ~f:(add_source ~dir) ~select: src_select dir ) dirs ;
 *)
 
-  let ( sorted, cycles, _others ) = TOPOSORT.sort !source_modules in
+  let ( sorted, cycles, _others ) = MODULE_TOPOSORT.sort !source_modules in
 
-  List.iter (fun ( m, _incoming, _outgoing ) ->
-      Printf.eprintf "Cycle: %s\n%!" m.name;
-    ) cycles ;
+  if !verbose then
+    List.iter (fun ( m, _incoming, _outgoing ) ->
+        Printf.eprintf "Cycle: %s\n%!" m.name;
+      ) cycles ;
 
   if not !all_links then
     List.iter (fun m ->
@@ -278,6 +307,11 @@ let main () =
       match m.dot with
       | None -> ()
       | Some dot ->
+          if !show_filename then
+            Ez_dot.V1.rename_node dot
+              (Printf.sprintf "%s:\n%s"
+                 m.name
+                 ( String.concat "\n" m.filenames));
           if !summary then
             Printf.printf "%s\n    deps: " m.name ;
           StringMap.iter (fun _ m2 ->
@@ -298,12 +332,138 @@ let main () =
 
     ) sorted ;
 
-  let dotfile = !basename ^ ".dot" in
+  let dotfile = !basename ^ "-modules.dot" in
   Ez_dot.V1.save graph dotfile ;
-  let outfile = !basename ^ "." ^ !format in
+  let outfile = !basename ^ "-modules." ^ !format in
   Ez_dot.V1.dot2file ~dotfile ~format:!format ~outfile;
   Printf.eprintf "Generated %d edges in %S and %S\n%!"
     !nedges dotfile outfile;
+
+  if !show_filename then
+    Printf.eprintf "* use --dont-show-filename to remove source filenames\n";
+
+  let all_packages = ref [] in
+  let packages = Hashtbl.create 111 in
+  let package_graph = Ez_dot.V1.create "packagedeps" [] in
+  let find_package m =
+    let modname = m.name in
+    let package_name, module_name =
+      let len = String.length modname in
+      let rec iter i len name =
+        if i + 1 < len then
+          if name.[i] = '_' && name.[i+1] = '_' then
+            String.sub name 0 i, String.sub name (i+2) (len-i-2)
+          else
+            iter (i+1) len name
+        else
+          name, ""
+      in
+      iter 0 len modname
+    in
+    let p = match Hashtbl.find packages package_name with
+      | exception Not_found ->
+          let package_dir = match m.filenames with
+            | [] -> ""
+            | s :: _ -> Filename.dirname s
+          in
+          (*
+          Printf.eprintf "package_dir %s ->  %s\n%!" package_name package_dir;
+*)
+          let p = {
+            package_name ;
+            package_dir ;
+            package_node = Ez_toposort.V1.new_node () ;
+            package_dot = Ez_dot.V1.node package_graph package_name
+                ( if package_dir = "" then
+                    Ez_dot.V1.[ NodeColor "cyan" ;
+                                NodeStyle Filled
+                              ]
+                  else
+                    []
+                ) ;
+            package_modules = StringSet.empty ;
+            package_deps = StringMap.empty ;
+          }
+          in
+          Hashtbl.add packages package_name p;
+          all_packages := p :: !all_packages ;
+          p
+      | p -> p
+    in
+    if module_name <> "" then
+      p.package_modules <- StringSet.add module_name p.package_modules ;
+    p
+  in
+
+  let keep m =
+    !keep_external || m.dot <> None
+  in
+
+  List.iter (fun m ->
+      if keep m then
+        let p = find_package m in
+        StringMap.iter (fun _ m2 ->
+            if keep m2 then
+              let p2 = find_package m2 in
+              if p != p2 then
+                p.package_deps <- StringMap.add p2.package_name p2 p.package_deps ;
+          ) m.deps ;
+    ) sorted ;
+
+  let ( sorted, _cycles, _others ) = PACKAGE_TOPOSORT.sort !all_packages in
+
+  (*
+  List.iter (fun ( m, _incoming, _outgoing ) ->
+      Printf.eprintf "Package Cycle: %s\n%!" m.package_name;
+    ) cycles ;
+*)
+
+  List.iter (fun m ->
+      let to_remove = ref [] in
+      StringMap.iter (fun _ m2 ->
+          StringMap.iter (fun name _ ->
+              if StringMap.mem name m.package_deps then begin
+                to_remove := name :: !to_remove ;
+              end
+            ) m2.package_deps
+        ) m.package_deps ;
+      List.iter (fun name ->
+          m.package_deps <- StringMap.remove name m.package_deps ) !to_remove
+    ) sorted ;
+
+  let nedges = ref 0 in
+  List.iter (fun m ->
+      if !summary then
+        Printf.printf "package %s:\n" m.package_name;
+      if !list_modules then
+        Ez_dot.V1.rename_node m.package_dot
+          ( Printf.sprintf "%s:\n%s" m.package_name
+              ( String.concat "\n"
+                  ( StringSet.to_list m.package_modules )))
+      else
+        Ez_dot.V1.rename_node m.package_dot
+          ( Printf.sprintf "%s:\n%s" m.package_name m.package_dir )
+      ;
+      StringMap.iter (fun _ m2 ->
+          if !summary then
+            Printf.printf "   * %s\n" m2.package_name;
+          Ez_dot.V1.add_edge m.package_dot m2.package_dot [];
+          incr nedges;
+        ) m.package_deps ;
+    ) sorted ;
+
+  let dotfile = !basename ^ "-packages.dot" in
+  Ez_dot.V1.save package_graph dotfile ;
+  let outfile = !basename ^ "-packages." ^ !format in
+  Ez_dot.V1.dot2file ~dotfile ~format:!format ~outfile;
+  Printf.eprintf "Generated %d edges in %S and %S\n%!"
+    !nedges dotfile outfile;
+
+  if not !keep_external then
+    Printf.eprintf "* Use --keep-external to keep external packages\n";
+  if !list_modules then
+    Printf.eprintf "* Use --dont-list-modules to remove modules\n";
+
   ()
 
 let () = main ()

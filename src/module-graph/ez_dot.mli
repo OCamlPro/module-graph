@@ -68,6 +68,7 @@ val edge : node -> node -> edge_attributes list -> edge
 val add_edge : node -> node -> edge_attributes list -> unit
 val add_edges : node -> node list -> edge_attributes list -> unit
 val add_path : node list -> edge_attributes list -> unit
+val name : node -> string
 val rename_node : node -> string -> unit
 val save : graph -> string -> unit
 val save_in : graph -> out_channel -> unit
