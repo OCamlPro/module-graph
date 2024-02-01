@@ -14,6 +14,7 @@
  (description "The module-graph tool generates a graph of dependencies between OCaml modules using compiled object files. module-graph scans the current directory and sub-directories looking for .cmt/.cmti/.cmi files, creates a memory graph of dependencies between them, and uses `dot` to display the graph into a pdf/image file.\n")
  (depends
    (ocaml (>= 4.07.0))
+   (ocplib_stuff ( >= 0.3 ))
    ocaml-base-compiler
    (ez_file ( >= 0.3 ))
    ppx_inline_test
